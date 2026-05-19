@@ -64,6 +64,23 @@ nav a {
 }
 
 
+/*Parte do início*/
+.inicio {
+    background-image: url(sobrenosfundo.png);
+    background-size: cover;
+    background-position: center;
+
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.inicio h1 {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+
 /*Parte final*/
 .final {
     background-color: #0a7d2c;
