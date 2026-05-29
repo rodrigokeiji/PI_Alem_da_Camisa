@@ -1,0 +1,419 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+
+/*Parte da Navbar*/
+.navbar {
+    background-color: #0a7d2c;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 40px;
+}
+
+.logo {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo_text {
+    text-decoration: none;
+    color: white;
+}
+
+
+.logo img {
+    width: 100px;
+    height: 80px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.btn_login {
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 12px;
+}
+
+.btn_login:hover {
+    background-color: #066622;
+}
+
+.btn_cadastrar {
+    background-color: #e6e6e6;
+    color: #0a7d2c;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.btn_cadastrar:hover {
+    background-color: #d1d1d1;
+}
+
+
+/*Parte do início*/
+.inicio {
+    background-image: url(/assets/imgs/iniciofundo.png);
+    background-size: cover;
+    background-position: center;
+
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.inicio h1 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cmcagr {
+    background-color: #0a7d2c;
+    color: white;
+}
+
+.cmcagr:hover {
+    background-color: #066622;
+}
+
+.login {
+    border: 2px solid white;
+    color: white;
+}
+
+.login:hover {
+    background-color: #0a7d2c;
+    color: white;
+}
+
+
+/*Parte dos benefícios*/
+.beneficios {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.titulo {
+    font-size: 32px;
+    color: #0a4d2c;
+    margin-bottom: 50px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 220px;
+    padding: 20px;
+    text-align: center;
+}
+
+.icone {
+    width: 70px;
+    height: 70px;
+    background-color: #d6f5de;
+    color: #0a7d2c;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.card p {
+    color: #444;
+    font-size: 14px;
+}
+
+
+/* Camisa em destaque */
+.fundoverde_destaque {
+    padding: 80px 20px;
+    text-align: center;
+
+    background-color: #0a7d2c;
+    padding: 80px 20px;
+
+}
+
+.card_destaque {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card_destaque img {
+    width: 400px;
+    border-radius: 15px;
+}
+
+.texto_destaque {
+    text-align: left;
+}
+
+.texto_destaque h3 {
+    color: #0a7d2c;
+    font-size: 32px;
+}
+
+.preco {
+    color: #0a7d2c;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.texto_destaque a {
+    background-color: #0a7d2c;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.texto_destaque a:hover {
+    background-color: #066622;
+}
+
+
+
+/* Mestres */
+.mestres {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.cards_mestres {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.mestre {
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.verde {
+    background-color: #0a7d2c;
+}
+
+.azul {
+    background-color: #2444a8;
+}
+
+.texto_mestre {
+    padding: 20px;
+    text-align: left;
+    height: 180px;
+}
+
+.mestre img {
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Precificador */
+.fundoverde_precificador {
+    padding: 80px 20px;
+    text-align: center;
+
+    background-color: #0a7d2c;
+    padding: 80px 20px;
+
+}
+
+.box_precificador {
+    background-color: white;
+
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.texto_precificador {
+    max-width: 500px;
+}
+
+.texto_precificador h2 {
+    color: #0a4d2c;
+    font-size: 36px;
+}
+
+.texto_precificador p {
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.texto_precificador a {
+    background-color: #0a7d2c;
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 22px;
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+.texto_precificador a:hover {
+    background-color: #066622;
+}
+
+.valor_camisa {
+    background-color: #f2f2f2;
+
+    padding: 25px 35px;
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+.valor_camisa h3 {
+    margin: 0;
+    color: #0a7d2c;
+    font-size: 40px;
+}
+
+.valor_camisa p {
+    margin-top: 10px;
+    color: #555;
+}
+
+
+/* Vídeo */
+.cuidados {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.thumb_video img {
+    width: 800px;
+    max-width: 100%;
+
+    border-radius: 20px;
+
+    transition: 0.3s;
+}
+
+.thumb_video img:hover {
+    transform: scale(1.02);
+}
+
+
+/*Parte final*/
+.final {
+    background-color: #0a7d2c;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.final h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.final p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.final_btn {
+    background-color: #e6e6e6;
+    color: #0a7d2c;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.final_btn:hover {
+    background-color: #d1d1d1;
+}
+
+
+/*Parte do footer*/
+.footer {
+    background-color: #0a4d2c;
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.footer p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: #90ee90;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

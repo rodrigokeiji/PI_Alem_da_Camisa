@@ -24,6 +24,12 @@ body {
     gap: 10px;
 }
 
+.logo_text {
+    text-decoration: none;
+    color: white;
+}
+
+
 .logo img {
     width: 100px;
     height: 80px;
@@ -78,6 +84,38 @@ nav a {
     font-size: 40px;
     color: white;
     margin-bottom: 20px;
+}
+
+
+/*Parte do sobre*/
+.sobre {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+
+    padding: 80px 60px;
+    background-color: #f5f5f5;
+
+    flex-wrap: wrap;
+}
+
+.sobre_texto {
+    width: 500px;
+}
+
+.sobre_texto h2 {
+    font-size: 42px;
+    color: #0a7d2c;
+
+    margin-bottom: 25px;
+}
+
+.sobre_texto p {
+    font-size: 18px;
+    color: #333;
+
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
 

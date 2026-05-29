@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Além da Camisa | Precificador</title>
+
+    <script src="./js/sessao.js"></script>
+    
+    <link rel="stylesheet" href="./css/precificador.css">
+    <link rel="icon" href="./assets/icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+</head>
+<body>
+    
+<header class="navbar">
+    <div class="logo">
+        <img src="assets/imgs/logo.png" alt="Logo">
+
+        <a href="indexlogado.html" class="logo_text">
+            <h4>Além da Camisa</h4>
+        </a>
+    </div>
+
+        <nav>
+            <a href="precificador.html">Precificador</a>
+            <a href="index.html" class="btn_sair">Sair</a>
+
+        </nav>
+</header>
+
+<section class="inicio">
+
+    <h1>Precificador de Camisas</h1>
+
+    <p>
+        Estime o valor de mercado de uma camisa histórica
+        com base nas características da peça.
+    </p>
+
+</section>
+
+
+<section class="precificador_container">
+
+    <div class="caracteristicas_box">
+
+        <h3>Características da Peça</h3>
+
+        <div class="campo">
+            <label>Era / Década</label>
+
+            <select id="ano">
+                <option>Antes de 1980</option>
+                <option>Anos 1980</option>
+                <option>Anos 1990</option>
+                <option>Anos 2000</option>
+                <option>Anos 2010</option>
+                <option>Anos 2020</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Condição</label>
+
+            <select id="condicao">
+                <option>Na Etiqueta (Novo)</option>
+                <option>Excelente</option>
+                <option>Bom Estado</option>
+                <option>Regular</option>
+                <option>Com Danos</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Raridade</label>
+
+            <select id="raridade">
+                <option>Edição Limitada</option>
+                <option>Raro</option>
+                <option>Comum</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Demanda</label>
+
+            <select id="demanda">
+                <option>Muito Alta</option>
+                <option>Alta</option>
+                <option>Média</option>
+                <option>Baixa</option>
+            </select>
+        </div>
+
+        <div class="checks">
+
+            <label>
+                <input type="checkbox" id="autografada">
+                Autografada
+            </label>
+
+            <label>
+                <input type="checkbox" id="usadajogo">
+                Usada em Jogo
+            </label>
+
+        </div>
+
+        <button class="btn_calcular" onclick="calcular()">
+            Calcular Valor
+        </button>
+
+    </div>
+
+
+    <div class="resultado_area">
+
+        <div class="resultado_box">
+
+            <h3>ESTIMATIVA DE VALOR</h3>
+
+            <h4>Valor estimado:</h4>
+
+            <div class="valor" id="msg_valor"></div>
+
+            <span class="faixa" id="msg_faixa"></span>
+
+            <p class="obs">
+                Estimativa baseada em dados históricos de mercado.
+            </p>
+
+        </div>
+
+
+        <div class="salvar_box">
+
+            <h3>Salvar Estimativa</h3>
+
+            <p>
+                Dê um nome para esta camisa e salve no histórico
+            </p>
+
+            
+            <input
+                type="text"
+                placeholder="Ex: Brasil 1970 Pelé Original"
+            >
+
+            <br><br><button class="btn_salvar" onclick="salvar()">
+                Salvar Camisa
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+        <p>© 2026 Camisas Históricas</p>
+        <a href="sobrenos.html">Sobre Nós</a>
+</footer>
+    
+</body>
+<script>
+
+    function calcular() {
+
+        var valorano = ano.value;
+        var valorcondicao = condicao.value;
+        var valorraridade = raridade.value;
+        var valordemanda = demanda.value;
+
+        var valor = 200;
+
+
+
+
+        if (valorano == "Antes de 1980") {
+            valor += 300;
+        } else if (valorano == "Anos 1980") {
+            valor += 200;
+        } else if (valorano == "Anos 1990") {
+            valor += 150;
+        } else {
+            valor += 50;
+        }
+
+
+
+        if (valorcondicao == "Na Etiqueta (Novo)") {
+            valor += 200;
+        } else if (valorcondicao == "Excelente") {
+            valor += 120;
+        } else if (valorcondicao == "Bom Estado") {
+            valor += 70;
+        } else {
+            valor += 20;
+        }
+
+
+
+        if (valorraridade == "Edição Limitada") {
+            valor += 250;
+        } else if (valorraridade == "Raro") {
+            valor += 150;
+        } else {
+            valor += 50;
+        }
+
+
+
+        if (valordemanda == "Muito Alta") {
+            valor += 200;
+        } else if (valordemanda == "Alta") {
+            valor += 120;
+        } else if (valordemanda == "Média") {
+            valor += 70;
+        } else {
+            valor += 20;
+        }
+
+
+
+        if (autografada.checked) {
+            valor += 300;
+        }
+
+        if (usadajogo.checked) {
+            valor += 400;
+        }
+
+
+
+
+        var minimo = valor - 50;
+        var maximo = valor + 50;
+
+
+
+
+        msg_valor.innerHTML = `R$ ${valor},00`;
+
+        msg_faixa.innerHTML = `Faixa: R$ ${minimo},00 - R$ ${maximo},00`;
+
+    }
+
+</script>
+</html>

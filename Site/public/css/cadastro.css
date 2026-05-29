@@ -24,6 +24,12 @@ body {
     gap: 10px;
 }
 
+.logo_text {
+    text-decoration: none;
+    color: white;
+}
+
+
 .logo img {
     width: 100px;
     height: 80px;
