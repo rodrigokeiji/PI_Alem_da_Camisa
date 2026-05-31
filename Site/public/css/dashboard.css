@@ -123,6 +123,7 @@ nav a {
     padding: 20px;
 }
 
+
 .card_camisa h4 {
     margin-top: 0;
     color: #0a4d2c;
@@ -139,6 +140,21 @@ nav a {
     border: none;
     padding: 8px;
     cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.lista_camisas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.img_camisa {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 /* Parte do Gráfico*/

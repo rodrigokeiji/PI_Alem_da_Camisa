@@ -131,20 +131,32 @@ function cadastrar() {
 
     .then(function (resposta) {
 
-        if (resposta.ok) {
+    if (resposta.ok) {
 
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "Cadastro realizado com sucesso!";
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
 
-            setTimeout(() => {
-                window.location = "login.html";
-            }, 2000);
+        setTimeout(() => {
+            window.location = "login.html";
+        }, 2000);
 
+} else {
+
+    resposta.text().then(texto => {
+
+        cardErro.style.display = "block";
+
+        if (texto.includes("Duplicate entry")) {
+            mensagem_erro.innerHTML = "Esse email já foi cadastrado!";
         } else {
-            throw "Erro ao realizar cadastro";
+            mensagem_erro.innerHTML = "Erro ao realizar cadastro!";
         }
-    })
+
+    });
+
+}
+
+})
 
     .catch(function (erro) {
         console.log(erro);
