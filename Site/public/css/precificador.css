@@ -77,7 +77,6 @@ nav a {
 }
 
 
-/* CONTAINER */
 
 .precificador_container {
     display: flex;
@@ -87,7 +86,7 @@ nav a {
     background-color: #f5f7f5;
 }
 
-/* BOXES */
+
 
 .caracteristicas_box,
 .salvar_box {
@@ -105,7 +104,7 @@ nav a {
 }
 
 
-/* CAMPOS */
+/* Parte dos Campos */
 
 .campo {
     margin-bottom: 20px;
@@ -134,7 +133,7 @@ nav a {
 }
 
 
-/* CHECKBOX */
+/* Parte da Checkbox */
 
 .checks {
     margin: 20px 0;
@@ -145,7 +144,7 @@ nav a {
 }
 
 
-/* BOTÕES */
+/* Parte dos botões */
 
 .btn_calcular,
 .btn_salvar {
@@ -165,7 +164,7 @@ nav a {
 }
 
 
-/* RESULTADO */
+/* Parte do Resultado */
 
 .resultado_box {
     background-color: #0a7d2c;

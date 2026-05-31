@@ -24,6 +24,8 @@
     </div>
 
         <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="minhascamisas.html">Minhas Camisas</a>
             <a href="precificador.html">Precificador</a>
             <a href="index.html" class="btn_sair">Sair</a>
 
@@ -49,7 +51,7 @@
         <h3>Características da Peça</h3>
 
         <div class="campo">
-            <label>Era / Década</label>
+            <label>Era</label>
 
             <select id="ano">
                 <option>Antes de 1980</option>
@@ -145,6 +147,7 @@
             
             <input
                 type="text"
+                id="input_nomecamisa"
                 placeholder="Ex: Brasil 1970 Pelé Original"
             >
 
@@ -166,12 +169,15 @@
 </body>
 <script>
 
+    var valorcalculado = 0;
+
     function calcular() {
 
         var valorano = ano.value;
         var valorcondicao = condicao.value;
         var valorraridade = raridade.value;
         var valordemanda = demanda.value;
+        var nomecamisa = input_nomecamisa.value;
 
         var valor = 200;
 
@@ -245,7 +251,57 @@
 
         msg_faixa.innerHTML = `Faixa: R$ ${minimo},00 - R$ ${maximo},00`;
 
+        valorcalculado = valor;
+
     }
+
+    function salvar() {
+
+    var nomeCamisa = input_nomecamisa.value;
+    var precoEstimado = valorcalculado;
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    if (nomeCamisa == "" || nomeCamisa == null) {
+        alert("Digite o nome da camisa!");
+        return false;
+    }
+
+    if (precoEstimado == 0) {
+        alert("Calcule o valor antes de salvar!");
+        return false;
+    }
+
+    fetch("/precificador/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeCamisa: nomeCamisa,
+            precoEstimado: precoEstimado,
+            idUsuario: idUsuario
+        })
+    })
+    .then(function (resposta) {
+
+        if (resposta.ok) {
+            alert("Camisa salva com sucesso!");
+
+            input_nomecamisa.value = "";
+
+            window.location = "minhascamisas.html"
+
+        } else {
+            alert("Erro ao salvar camisa");
+        }
+
+    })
+    .catch(function (erro) {
+        console.log(erro);
+    });
+
+}
 
 </script>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Além da Camisa | Minhas Camisas</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/minhascamisas.css">
+    <link rel="icon" href="./assets/icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="assets/imgs/logo.png" alt="Logo">
+
+            <a href="indexlogado.html" class="logo_text">
+                <h4>Além da Camisa</h4>
+            </a>
+        </div>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="minhascamisas.html">Minhas Camisas</a>
+            <a href="precificador.html">Precificador</a>
+            <a href="index.html" class="btn_sair">Sair</a>
+
+        </nav>
+    </header>
+
+    <section class="container">
+        <h1>Minhas Camisas Precificadas</h1>
+        <p class="subtitulo">
+            Histórico de camisas cadastradas
+        </p>
+
+
+<div class="resumo">
+
+    <div class="box_resumo">
+        <h4>Total de Camisas</h4>
+        <span id="totalcamisas">0</span>
+    </div>
+
+    <div class="box_resumo">
+        <h4>Valor Total</h4>
+        <span id="valortotal">R$ 0,00</span>
+    </div>
+
+    <div class="box_resumo">
+        <h4>Camisa Mais Cara</h4>
+        <span id="maiorvalor">R$ 0,00</span>
+    </div>
+
+    <div class="box_resumo">
+        <h4>Camisa Mais Barata</h4>
+        <span id="menorvalor">R$ 0,00</span>
+    </div>
+
+</div>
+
+
+<div class="lista_camisas" id="listacamisas">
+</div>
+
+
+    </section>
+
+
+    <footer class="footer">
+        <p>© 2026 Camisas Históricas</p>
+        <a href="sobrenos.html">Sobre Nós</a>
+    </footer>
+
+</body>
+<script>
+function listarCamisas() {
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/precificador/${idUsuario}`)
+        .then(res => res.json())
+        .then(dados => {
+
+            console.log("Camisas:", dados);
+
+            var lista = document.getElementById("listacamisas");
+            lista.innerHTML = "";
+
+            var total = 0;
+            var soma = 0;
+            var maior = 0;
+            var menor = Number.MAX_VALUE;
+
+            dados.forEach(camisa => {
+
+                var valor = Number(camisa.preco_estimado);
+
+                lista.innerHTML += `
+                    <div class="card_camisa">
+                        <h3>${camisa.nome_camisa}</h3>
+                        <p>Data: ${new Date(camisa.data_criacao).toLocaleDateString()}</p>
+                        <h2>R$ ${valor.toFixed(2)}</h2>
+                    </div>
+                `;
+
+                total++;
+                soma += valor;
+
+                if (valor > maior) maior = valor;
+                if (valor < menor) menor = valor;
+            });
+
+            document.getElementById("totalcamisas").innerHTML = total;
+            document.getElementById("valortotal").innerHTML = `R$ ${soma.toFixed(2)}`;
+            document.getElementById("maiorvalor").innerHTML = `R$ ${maior.toFixed(2)}`;
+            document.getElementById("menorvalor").innerHTML =
+                total > 0 ? `R$ ${menor.toFixed(2)}` : "R$ 0,00";
+
+        })
+        .catch(err => {
+            console.log("Erro ao carregar camisas:", err);
+        });
+}
+
+
+listarCamisas();
+</script>
+
+
+
+
+</html>

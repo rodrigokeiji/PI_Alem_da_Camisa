@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Além da Camisa | Dashboard</title>
+
+    <script src="./js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="icon" href="./assets/icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+</head>
+<body>
+    
+<header class="navbar">
+    <div class="logo">
+        <img src="assets/imgs/logo.png" alt="Logo">
+
+        <a href="indexlogado.html" class="logo_text">
+            <h4>Além da Camisa</h4>
+        </a>
+    </div>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="minhascamisas.html">Minhas Camisas</a>
+            <a href="precificador.html">Precificador</a>
+            <a href="index.html" class="btn_sair">Sair</a>
+
+        </nav>
+</header>
+
+
+    <section class="container">
+        <h1>Minhas Camisas Precificadas</h1>
+        <p class="subtitulo">
+            Histórico de camisas cadastradas
+        </p>
+
+        <div class="resumo">
+
+            <div class="box_resumo">
+                <h4>Total de Camisas</h4>
+                <span id="totalCamisas">0</span>
+            </div>
+
+            <div class="box_resumo">
+                <h4>Total de Curtidas</h4>
+                <span id="totalCurtidas">0</span>
+            </div>
+
+        </div>
+
+
+        <section class="conteudo">
+
+
+            <div class="catalogo">
+
+                <h3>Catálogo de Camisas</h3>
+
+
+                <div id="listaCamisas" class="lista_camisas">
+
+
+                    <div class="card_camisa">
+                        <h4>Brasil 1970</h4>
+                        <p>Camisa histórica</p>
+
+                        <button onclick="curtir(1)">
+                            Curtir 
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="grafico">
+
+                <h3>Ranking de Curtidas</h3>
+
+                <div class="grafico-box">
+                    <canvas id="graficoPizza"></canvas>
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+<footer class="footer">
+        <p>© 2026 Camisas Históricas</p>
+        <a href="sobrenos.html">Sobre Nós</a>
+</footer>
+
+</body>
+<script>
+
+   let graficoPizza;
+let proximaAtualizacao;
+
+
+window.onload = exibirDashboard();
+
+function exibirDashboard() {
+    carregarCamisas();
+}
+
+
+
+function carregarCamisas() {
+
+    fetch("/camisas")
+        .then(res => res.json())
+        .then(dados => {
+
+            var lista = document.getElementById("listaCamisas");
+            lista.innerHTML = "";
+
+            document.getElementById("totalCamisas").innerHTML = dados.length;
+
+            dados.forEach(camisa => {
+
+                lista.innerHTML += `
+                    <div class="card_camisa">
+                        <h4>${camisa.nome_camisa}</h4>
+                        <p>${camisa.descricao}</p>
+
+                        <button onclick="curtir(${camisa.id})">
+                            Curtir 
+                        </button>
+                    </div>
+                `;
+            });
+
+            carregarGrafico();
+        })
+        .catch(erro => {
+            console.log("Erro ao carregar camisas:", erro);
+        });
+}
+
+
+
+function curtir(idCamisa) {
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch("/camisas/curtir", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuario: idUsuario,
+            idCamisa: idCamisa
+        })
+    })
+    .then(res => {
+
+        if (res.ok) {
+            carregarCamisas();
+        }
+
+    })
+    .catch(erro => {
+        console.log("Erro ao curtir:", erro);
+    });
+}
+
+
+
+function carregarGrafico() {
+
+    fetch("/camisas/ranking")
+        .then(res => res.json())
+        .then(dados => {
+
+            var labels = [];
+            var valores = [];
+            var totalCurtidas = 0;
+
+            for (var i = 0; i < dados.length; i++) {
+                labels.push(dados[i].nome_camisa);
+                valores.push(dados[i].totalCurtidas);
+                totalCurtidas += Number(dados[i].totalCurtidas);
+            }
+
+            document.getElementById("totalCurtidas").innerHTML = totalCurtidas;
+
+            var ctx = document.getElementById("graficoPizza");
+
+            if (graficoPizza != undefined) {
+                graficoPizza.destroy();
+            }
+
+            graficoPizza = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: valores,
+                        backgroundColor: [
+                            '#0a7d2c',
+                            '#2ecc71',
+                            '#27ae60',
+                            '#145a32',
+                            '#58d68d'
+                        ]
+                    }]
+                }
+            });
+
+        })
+        .catch(erro => {
+            console.log("Erro no gráfico:", erro);
+        });
+}
+
+</script>
+</html>
