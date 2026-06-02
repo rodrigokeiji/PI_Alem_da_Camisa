@@ -23,14 +23,14 @@ function curtir(req, res) {
         .then(resultado => {
 
             if (resultado.length > 0) {
-                // já curtiu → descurtir
+                // já curtiu descurtir
                 return camisasModel.descurtir(idUsuario, idCamisa)
                     .then(() => {
                         res.status(200).json({ status: "descurtido" });
                     });
             }
 
-            // ainda não curtiu → curtir
+            // ainda não curtiu curtir
             return camisasModel.curtir(idUsuario, idCamisa)
                 .then(() => {
                     res.status(201).json({ status: "curtido" });

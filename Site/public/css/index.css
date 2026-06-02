@@ -168,7 +168,7 @@ nav a {
 }
 
 
-/* Camisa em destaque */
+/*Parte da Camisa em Destaque */
 .fundoverde_destaque {
     padding: 80px 20px;
     text-align: center;
@@ -222,9 +222,7 @@ nav a {
 }
 
 
-
-/* Mestres */
-/* Mestres */
+/* Parte dos Mestres */
 .mestres {
     padding: 80px 20px;
     text-align: center;
@@ -284,7 +282,7 @@ nav a {
 }
 
 
-/* Precificador */
+/* Parte do Precificador */
 .fundoverde_precificador {
     padding: 80px 20px;
     text-align: center;
@@ -359,7 +357,7 @@ nav a {
 }
 
 
-/* Vídeo */
+/*Parte do Vídeo */
 .cuidados {
     padding: 80px 20px;
     text-align: center;
